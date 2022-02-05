@@ -28,7 +28,7 @@ jobs:
         with:
           repository: wirlleyd/argopoc-config
           token: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
-          ref: hoolog
+          ref: homolog
 
       - name: kustomize install
         uses: imranismail/setup-kustomize@v1
