@@ -19,6 +19,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Deploy Action"
+          git status
+          git pull
           git checkout main
           git status
           git checkout homolog
