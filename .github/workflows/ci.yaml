@@ -37,7 +37,7 @@ jobs:
 
       - name: update manifests
         run : |
-          ls
+          cat kustomization.yaml
           kustomize edit set image argopoc=wirlleyd/argopoc:${{ github.sha }}
           cat kustomization.yaml
 
