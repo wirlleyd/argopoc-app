@@ -24,7 +24,7 @@ jobs:
           git checkout main
           git status
           git checkout homolog
-          git merge main --allow-unrelated-histories
+          git merge main --allow-unrelated-histories --strategy-option theirs
           git push
           git status
 
