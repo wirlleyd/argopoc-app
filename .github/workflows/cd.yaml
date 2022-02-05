@@ -2,20 +2,22 @@ name: CD
 on:
   release:
     types: [created]
-    
+
 jobs:
   delivery:
     name: Delivery
     runs-on: ubuntu-latest
     steps:
       - name: Check to config repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
         with:
           repository: wirlleyd/argopoc-config
           token: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
+          ref: homolog
 
       - name: merge homolog to main
         run : |
+          git checkout main
           git merge homolog
 
       - name: commit
