@@ -15,12 +15,16 @@ jobs:
           token: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
           ref: homolog
 
-      - name: merge homolog to main
-        uses: robotology/gh-action-nightly-merge@v1.3.1
-        with:
-          stable_branch: 'main'
-          development_branch: 'homolog'
-          allow_ff: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
+      - name: perform merge
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Deploy Action"
+          git status
+          git pull
+          git checkout main
+          git status
+          git checkout homolog
+          git merge main --no-edit
+          git push
+          git status
 
