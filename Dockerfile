@@ -8,6 +8,8 @@ RUN yarn install --production
 
 COPY . .
 
+RUN npm i -g @nestjs/cli
+
 RUN yarn build
 
 # ---
