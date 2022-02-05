@@ -24,7 +24,7 @@ jobs:
     needs: build
     steps:
       - name: Check to config repo
-        uses: actions/checkout@master
+        uses: actions/checkout@main
         with:
           repository: wirlleyd/argopoc-config
           token: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
