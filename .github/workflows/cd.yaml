@@ -1,0 +1,19 @@
+name: CD
+on:
+  push:
+    branches: ["main"]
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - name: build image and push to dockerhub
+        uses: docker/build-push-action@v1.1.0
+        with:
+          username: wirlleyd
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: wirlleyd/argopoc
+          tags: ${{ github.sha }}, latest
