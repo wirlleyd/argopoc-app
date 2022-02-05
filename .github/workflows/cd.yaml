@@ -22,9 +22,7 @@ jobs:
           git status
           git pull
           git checkout main
-          git status
-          git checkout homolog
           git merge main --allow-unrelated-histories --strategy-option theirs
-          git push
+          git push origin main
           git status
 
