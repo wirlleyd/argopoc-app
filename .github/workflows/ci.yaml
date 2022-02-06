@@ -28,7 +28,7 @@ jobs:
         with:
           repository: wirlleyd/argopoc-config
           token: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
-          ref: homolog
+          ref: main
 
       - name: kustomize install
         uses: imranismail/setup-kustomize@v1
@@ -37,14 +37,13 @@ jobs:
 
       - name: update manifests
         run : |
-          cat kustomization.yaml
+          cd homolog
           kustomize edit set image argopoc=wirlleyd/argopoc:${{ github.sha }}
-          cat kustomization.yaml
 
       - name: commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Deploy Action"
           git commit -am "change image tag"
-          git push origin homolog
+          git push origin main
 

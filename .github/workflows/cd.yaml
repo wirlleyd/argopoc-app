@@ -13,16 +13,13 @@ jobs:
         with:
           repository: wirlleyd/argopoc-config
           token: ${{ secrets.ARGOPOC_CONFIG_TOKEN }}
-          ref: homolog
+          ref: main
 
-      - name: perform merge
+      - name: update production tag and commit
         run: |
+          sh updateTag.sh
           git config --local user.email "action@github.com"
           git config --local user.name "Deploy Action"
-          git status
-          git pull
-          git checkout main
-          git merge homolog --allow-unrelated-histories --strategy-option theirs
+          git commit -am "change image tag"
           git push origin main
-          git status
 
