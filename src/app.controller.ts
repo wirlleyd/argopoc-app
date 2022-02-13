@@ -16,13 +16,13 @@ export class AppController {
   healthz(@Res() response: Response) {
     const current_date = new Date();
     const date_in_seconds = (current_date.getTime() - this.started_at.getTime()) / 1000;
-    if(date_in_seconds <= 30){
-      return response
+    // if(date_in_seconds > 30){
+    //   return response
+    //     .status(500)
+    //     .send("Im broken");
+    // }
+    return response
       .status(200)
       .send("Im alive");
-    }
-    return response
-      .status(500)
-      .send("Im broken");
   }
 }
