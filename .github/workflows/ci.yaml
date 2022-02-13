@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      
+
       - name: build image and push to dockerhub
         uses: docker/build-push-action@v1.1.0
         with:
@@ -17,7 +17,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: wirlleyd/argopoc
           tags: ${{ github.sha }}, latest
-      
+
   deploy:
     name: deploy
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
           kustomize_version: v3.6.1
 
       - name: update manifests
-        run : |
+        run: |
           cd homolog
           kustomize edit set image argopoc=wirlleyd/argopoc:${{ github.sha }}
 
@@ -44,6 +44,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Deploy Action"
-          git commit -am "change image tag"
+          git commit -am "${{ github.event.head_commit.message }}"
           git push origin main
-
